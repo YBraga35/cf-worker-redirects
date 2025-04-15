@@ -1,0 +1,17 @@
+
+
+name = "divulgacao-redirect"
+main = "src/index.js"
+compatibility_date = "2024-04-15"
+
+# Opcional: define domínio customizado já aqui
+routes = [
+  { pattern = "divulgacao.yanbraga.com/*", zone_name = "yanbraga.com" }
+]
+
+# Troque para sua conta
+account_id = "d3b9d419627ff086331fdc4847bd8644"
+/*
+Você encontra seu account_id na dashboard do 
+Cloudflare, em Workers & Pages > Settings > API.
+*/
