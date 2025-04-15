@@ -1,9 +1,3 @@
-Show! Dá sim pra usar um repositório do GitHub como origem pro seu Worker e manter os redirecionamentos lá — ótimo pra versionar ou atualizar fácil com Git.
-
-Aqui vai o **passo a passo completo** para fazer isso:
-
----
-
 ### ✅ 1. Crie o repositório no GitHub
 
 Se ainda não tem, crie um repositório novo chamado por exemplo `cf-workers-redirects`. Dentro dele, crie esta estrutura de arquivos:
