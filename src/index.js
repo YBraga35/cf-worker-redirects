@@ -9,19 +9,19 @@ export default {
       case '/esperanca-no-deserto':
         return Response.redirect('https://yan-braga.notion.site/Divuga-o-Esperan-a-no-Deserto-1cbf36a87c3b803cb135e9b1b314e7c4?pvs=4', 301)
       case '/esperanca-no-deserto/whatsapp':
-          return Response.redirect('https://wa.me/5551991866752?text=Ol%C3%A1%2C%20sou%20%5Bseu%20nome%5D!%20Vim%20para%20a%20vaga%20da%20campanha%20de%20quinta-feira', 301)
+          return Response.redirect('https://wa.me/5551991866752?text=Ol%C3%A1!%20Vim%20para%20a%20vaga%20da%20campanha%20de%20quinta-feira', 301)
 
       case '/ecos-da-guerra':
         return Response.redirect('https://yan-braga.notion.site/Divulga-o-Ecos-na-Guerra-Rubra-1d5f36a87c3b80769ee9e428477ee872?pvs=4', 301)
     
       case '/ecos-da-guerra/whatsapp':
-        return Response.redirect('https://wa.me/5551991866752?text=Ol%C3%A1%2C%20sou%20%5Bseu%20nome%5D!%20Vim%20para%20a%20vaga%20da%20campanha%20de%20sexta-feira', 301)
+        return Response.redirect('https://wa.me/5551991866752?text=Ol%C3%A1!%20Vim%20para%20a%20vaga%20da%20campanha%20de%20sexta-feira', 301)
 
       case '/descendo-ao-avernus':
         return Response.redirect('https://yan-braga.notion.site/Divulga-o-Descendo-ao-Avernus-1d5f36a87c3b80a4aa0cc525ebbd6c42?pvs=4', 301)
     
       case '/descendo-ao-avernus/whatsapp':
-        return Response.redirect('https://wa.me/5551991866752?text=Ol%C3%A1%2C%20sou%20%5Bseu%20nome%5D!%20Vim%20para%20a%20vaga%20da%20campanha%20de%20domingo', 301)
+        return Response.redirect('https://wa.me/5551991866752?text=Ol%C3%A1!%20Vim%20para%20a%20vaga%20da%20campanha%20de%20domingo', 301)
     
       default:
         return new Response('Página não encontrada.', { status: 404 })
