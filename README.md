@@ -1,103 +1,92 @@
-### ✅ 1. Crie o repositório no GitHub
 
-Se ainda não tem, crie um repositório novo chamado por exemplo `cf-workers-redirects`. Dentro dele, crie esta estrutura de arquivos:
+# 🌐 Cloudflare Worker: Redirecionamentos Personalizados
+
+Este projeto usa um **Cloudflare Worker** para criar redirecionamentos customizados usando subdomínios do domínio `yanbraga.com`. É ideal para divulgar campanhas de RPG, links de WhatsApp, documentos e arquivos de forma prática e centralizada.
+
+---
+
+## 📁 Estrutura
 
 ```
-cf-workers-redirects/
+cf-worker-redirects/
 ├── src/
-│   └── index.js
-├── wrangler.toml
-└── README.md
+│   └── index.js        # Script principal com a lógica de redirecionamento
+├── wrangler.toml       # Configuração do Worker e domínios
+└── README.md           # Este arquivo
 ```
 
 ---
 
-### ✅ 2. Conteúdo do `index.js`
+## 🚀 Funcionalidades
 
-No arquivo `src/index.js`, coloque o script de redirecionamento:
+Atualmente o Worker realiza redirecionamentos para **dois subdomínios**:
 
-```javascript
-export default {
-  async fetch(request) {
-    const url = new URL(request.url)
+### 🔸 `divulgacao.yanbraga.com`
 
-    switch (url.pathname) {
-      case '/descendo-ao-avernus':
-        return Response.redirect('https://bit.ly/3G7Lns5', 301)
+Divulgação de campanhas de RPG e links úteis:
 
-      case '/ecos-da-guerra':
-        return Response.redirect('https://bit.ly/Ecos-Guerra-Rubra', 301)
-
-      case '/esperanca-no-deserto':
-        return Response.redirect('https://bit.ly/3EmVyZm', 301)
-
-      default:
-        return new Response('Página não encontrada.', { status: 404 })
-    }
-  }
-}
-```
+| Caminho                            | Destino (Notion ou WhatsApp) |
+|-----------------------------------|-------------------------------|
+| `/tabela-de-precos`               | Página de preços no Notion   |
+| `/ecos-da-guerra`                 | Página da campanha Ecos      |
+| `/ecos-da-guerra/whatsapp`        | Link direto para WhatsApp    |
+| `/descendo-ao-avernus`            | Página da campanha Avernus   |
+| `/descendo-ao-avernus/whatsapp`   | Link direto para WhatsApp    |
+| `/esperanca-no-deserto`           | Página da campanha Esperança |
+| `/esperanca-no-deserto/whatsapp`  | Link direto para WhatsApp    |
+| `/whatsapp`                       | Link geral de WhatsApp       |
 
 ---
 
-### ✅ 3. Conteúdo do `wrangler.toml`
+### 🔸 `drive.yanbraga.com`
 
-Esse arquivo configura o deploy:
+Redireciona para arquivos hospedados na nuvem (ex: OneDrive):
+
+| Caminho                                  | Destino (OneDrive)                                 |
+|------------------------------------------|----------------------------------------------------|
+| `/ubg/ultimate-backstory-guide`          | Guia de Criação de Backstory no OneDrive           |
+
+---
+
+## ⚙️ Configuração (wrangler.toml)
 
 ```toml
-name = "divulgacao-redirect"
+name = "cf-worker-redirects"
 main = "src/index.js"
 compatibility_date = "2024-04-15"
 
-# Opcional: define domínio customizado já aqui
+account_id = "SEU_ACCOUNT_ID"
+
 routes = [
-  { pattern = "divulgacao.yanbraga.com/*", zone_name = "yanbraga.com" }
+  { pattern = "divulgacao.yanbraga.com/*", zone_name = "yanbraga.com" },
+  { pattern = "drive.yanbraga.com/*", zone_name = "yanbraga.com" }
 ]
-
-# Troque para sua conta
-account_id = "SEU_ACCOUNT_ID_DO_CLOUDFLARE"
 ```
 
-Você encontra seu `account_id` na dashboard do Cloudflare, em **Workers & Pages > Settings > API**.
+> Substitua `SEU_ACCOUNT_ID` pelo ID da sua conta, encontrado na dashboard do Cloudflare.
 
 ---
 
-### ✅ 4. Conecte o GitHub ao Cloudflare
+## 🛠️ Como usar
 
-Agora vamos conectar esse repositório ao Worker:
+1. Faça um fork/clonagem deste repositório.
+2. Configure seu domínio e subdomínios no painel DNS da Cloudflare (tipo A apontando para `192.0.2.1` com proxy ativo).
+3. Atualize seu `account_id` no `wrangler.toml`.
+4. Faça deploy com:
 
-1. Vá para **Cloudflare Dashboard > Workers & Pages**.
-
-2. Clique em **"Create Application"** > selecione **"Workers"**.
-
-3. Em vez de criar do zero, clique na aba **"GitHub"** e **conecte seu repositório**.
-
-4. Escolha o branch (geralmente `main`) e clique em **"Set up builds and deployments"**.
-
-5. O Cloudflare vai detectar o `wrangler.toml` e configurar automaticamente o build com Wrangler.
-
----
-
-### ✅ 5. Configure o domínio personalizado
-
-Depois do deploy:
-
-1. Vá até a aba **"Triggers"** do Worker recém-publicado.
-
-2. Adicione a rota personalizada:
-
-```
-divulgacao.yanbraga.com/*
+```bash
+npx wrangler deploy
 ```
 
-3. No painel **DNS**, crie um registro A para `divulgacao` com IP `192.0.2.1`, e **mantenha o proxy (nuvem laranja) ativo**.
+---
+
+## ✨ Sugestões Futuras
+
+- Usar mapa JSON para centralizar os redirecionamentos
+- Interface web para edição de rotas
+- Logs de acesso para estatísticas
 
 ---
 
-### ✅ 6. Feito! Agora você pode:
-
-- Manter e atualizar seus redirecionamentos no GitHub com commits
-- Adicionar novas rotas no `index.js` facilmente
-- Ter versionamento e histórico de mudanças
-
----
+👨‍💻 Feito por [@YBraga35](https://github.com/YBraga35)
+```
