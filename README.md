@@ -1,92 +1,119 @@
+# 📦 Cloudflare Worker: Redirecionador de Links Personalizados
 
-# 🌐 Cloudflare Worker: Redirecionamentos Personalizados
+![Cloudflare Worker](https://img.shields.io/badge/Cloudflare-Worker-orange?logo=cloudflare)
+![Deploy automático](https://img.shields.io/badge/Deploy-Automático-brightgreen)
+![Status](https://img.shields.io/badge/Status-Ativo-success)
 
-Este projeto usa um **Cloudflare Worker** para criar redirecionamentos customizados usando subdomínios do domínio `yanbraga.com`. É ideal para divulgar campanhas de RPG, links de WhatsApp, documentos e arquivos de forma prática e centralizada.
+Este projeto utiliza [Cloudflare Workers](https://developers.cloudflare.com/workers/) para criar redirecionamentos personalizados em dois subdomínios:
 
----
-
-## 📁 Estrutura
-
-```
-cf-worker-redirects/
-├── src/
-│   └── index.js        # Script principal com a lógica de redirecionamento
-├── wrangler.toml       # Configuração do Worker e domínios
-└── README.md           # Este arquivo
-```
+- `divulgacao.yanbraga.com`
+- `drive.yanbraga.com`
 
 ---
 
 ## 🚀 Funcionalidades
 
-Atualmente o Worker realiza redirecionamentos para **dois subdomínios**:
-
-### 🔸 `divulgacao.yanbraga.com`
-
-Divulgação de campanhas de RPG e links úteis:
-
-| Caminho                            | Destino (Notion ou WhatsApp) |
-|-----------------------------------|-------------------------------|
-| `/tabela-de-precos`               | Página de preços no Notion   |
-| `/ecos-da-guerra`                 | Página da campanha Ecos      |
-| `/ecos-da-guerra/whatsapp`        | Link direto para WhatsApp    |
-| `/descendo-ao-avernus`            | Página da campanha Avernus   |
-| `/descendo-ao-avernus/whatsapp`   | Link direto para WhatsApp    |
-| `/esperanca-no-deserto`           | Página da campanha Esperança |
-| `/esperanca-no-deserto/whatsapp`  | Link direto para WhatsApp    |
-| `/whatsapp`                       | Link geral de WhatsApp       |
+O worker redireciona requisições HTTP com base no subdomínio e no caminho (`pathname`) acessado. Ele suporta dois conjuntos de redirecionamento:
 
 ---
 
-### 🔸 `drive.yanbraga.com`
+### 🌐 Subdomínio: `divulgacao.yanbraga.com`
 
-Redireciona para arquivos hospedados na nuvem (ex: OneDrive):
+Redirecionamentos para páginas de campanhas e contato via WhatsApp:
 
-| Caminho                                  | Destino (OneDrive)                                 |
-|------------------------------------------|----------------------------------------------------|
-| `/ubg/ultimate-backstory-guide`          | Guia de Criação de Backstory no OneDrive           |
+| Caminho                          | Destino                                                                                             |
+|----------------------------------|------------------------------------------------------------------------------------------------------|
+| `/tabela-de-precos`             | Página com tabela de preços no Notion                                                               |
+| `/whatsapp`                     | Link genérico para contato via WhatsApp                                                             |
+| `/esperanca-no-deserto`        | Página da campanha "Esperança no Deserto"                                                           |
+| `/esperanca-no-deserto/whatsapp` | WhatsApp para vaga na campanha de quinta-feira                                                      |
+| `/ecos-da-guerra`              | Página da campanha "Ecos da Guerra Rubra"                                                           |
+| `/ecos-da-guerra/whatsapp`     | WhatsApp para vaga na campanha de sexta-feira                                                       |
+| `/descendo-ao-avernus`         | Página da campanha "Descendo ao Avernus"                                                            |
+| `/descendo-ao-avernus/whatsapp` | WhatsApp para vaga na campanha de domingo                                                           |
 
 ---
 
-## ⚙️ Configuração (wrangler.toml)
+### 📁 Subdomínio: `drive.yanbraga.com`
 
-```toml
-name = "cf-worker-redirects"
-main = "src/index.js"
-compatibility_date = "2024-04-15"
+Redirecionamentos para arquivos hospedados no OneDrive:
 
-account_id = "SEU_ACCOUNT_ID"
+| Caminho                                 | Descrição                                |
+|-----------------------------------------|-------------------------------------------|
+| `/ubg/ultimate-backstory-guide`         | Livro *Ultimate Backstory Guide*          |
+| `/vss/valdas-spire-of-secrets`          | Livro *Valda’s Spire of Secrets*          |
+| `/tgs/the-griffons-saddlebag`           | Livro *The Griffon’s Saddlebag*           |
+| `/main`                                 | Pasta principal com diversos conteúdos    |
 
-routes = [
-  { pattern = "divulgacao.yanbraga.com/*", zone_name = "yanbraga.com" },
-  { pattern = "drive.yanbraga.com/*", zone_name = "yanbraga.com" }
-]
+---
+
+## 📂 Estrutura do Projeto
+
 ```
-
-> Substitua `SEU_ACCOUNT_ID` pelo ID da sua conta, encontrado na dashboard do Cloudflare.
+cf-workers-redirects/
+├── src/
+│   └── index.js         # Código principal do worker
+├── wrangler.toml        # Configuração do projeto para o Wrangler
+└── README.md            # Este arquivo de documentação
+```
 
 ---
 
 ## 🛠️ Como usar
 
-1. Faça um fork/clonagem deste repositório.
-2. Configure seu domínio e subdomínios no painel DNS da Cloudflare (tipo A apontando para `192.0.2.1` com proxy ativo).
-3. Atualize seu `account_id` no `wrangler.toml`.
-4. Faça deploy com:
+### ✅ Pré-requisitos
+
+- [Node.js](https://nodejs.org) instalado
+- Conta na [Cloudflare](https://dash.cloudflare.com)
+- `wrangler` instalado globalmente:
+
+```bash
+npm install -g wrangler
+```
+
+---
+
+### 🚧 Teste local
+
+Você pode rodar o worker localmente com:
+
+```bash
+wrangler dev
+```
+
+O servidor local simula o ambiente da Cloudflare para facilitar testes rápidos. Você pode acessar `http://localhost:8787/caminho-exemplo`.
+
+---
+
+### 🚀 Deploy para produção
+
+Basta executar:
 
 ```bash
 npx wrangler deploy
 ```
 
----
-
-## ✨ Sugestões Futuras
-
-- Usar mapa JSON para centralizar os redirecionamentos
-- Interface web para edição de rotas
-- Logs de acesso para estatísticas
+Certifique-se de que os subdomínios estejam apontando corretamente para o worker no painel da Cloudflare.
 
 ---
 
-👨‍💻 Feito por [@YBraga35](https://github.com/YBraga35)
+## ➕ Adicionando novos redirecionamentos
+
+Edite o arquivo `src/index.js`, localize o `switch` referente ao subdomínio desejado (`divulgacao` ou `drive`) e adicione um novo `case` com o `pathname` desejado e a URL de destino.
+
+Exemplo:
+
+```js
+case '/novo-caminho':
+  return Response.redirect('https://sua-url.com/algum-conteudo', 301)
 ```
+
+---
+
+## 📌 Observação
+
+Redirecionamentos utilizam status `301 - Moved Permanently`, o que pode ser cacheado pelos navegadores. Use com cuidado em URLs em constante mudança.
+
+---
+
+Feito com 💻 e 🎲 por [Yan Braga](https://yanbraga.com)
