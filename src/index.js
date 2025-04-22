@@ -44,7 +44,7 @@ export default {
         case '/tgs/the-griffons-saddlebag':
           return Response.redirect('https://1drv.ms/b/c/effe2f658b754cf2/ETU_7fOf0C9Hi42h_KlAxqEB0B-4Gia1CEVlKNbRekrw8w?e=elPfch', 301)
 
-        case 'main':
+        case '/main':
           return Response.redirect('https://1drv.ms/f/c/effe2f658b754cf2/EmMEH0DZTTpFkra34X_ND9IBUo_CWWSho8SPSNVoQmbmMQ?e=qd6YyY', 301)
       }
     }
