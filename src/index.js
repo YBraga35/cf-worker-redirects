@@ -37,6 +37,15 @@ export default {
       switch (path) {
         case '/ubg/ultimate-backstory-guide':
           return Response.redirect('https://1drv.ms/b/c/effe2f658b754cf2/ERxfu3Go_xpIrVm3aGGLfQQBNXbZyA8YfiRj6qqUMMm9Uw?e=dJi9nm', 301)
+
+        case '/vss/valdas-spire-of-secrets':
+          return Response.redirect('https://1drv.ms/b/c/effe2f658b754cf2/ESvxEBqaMzVJl2Zdlrgvm7ABpeHL-1xb2rFHaN65cqEU-g?e=NldX3v', 301)
+
+        case '/tgs/the-griffons-saddlebag':
+          return Response.redirect('https://1drv.ms/b/c/effe2f658b754cf2/ETU_7fOf0C9Hi42h_KlAxqEB0B-4Gia1CEVlKNbRekrw8w?e=elPfch', 301)
+
+        case 'main':
+          return Response.redirect('https://1drv.ms/f/c/effe2f658b754cf2/EmMEH0DZTTpFkra34X_ND9IBUo_CWWSho8SPSNVoQmbmMQ?e=qd6YyY', 301)
       }
     }
 
