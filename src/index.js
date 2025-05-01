@@ -51,7 +51,7 @@ export default {
           return Response.redirect('https://1drv.ms/b/c/effe2f658b754cf2/EWxPsSbJkDpOme9PtPc51fcB7MvgdAGM2jwVPMG3vQpfpw?e=Jhak72', 301)
 
         case '/cc-ootdl/character-creation-ootdl':
-          return Response.redirect('https://1drv.ms/b/c/effe2f658b754cf2/EQdhdPf8KiREuBFxI3_eNDIBykzAc-I789hylaemkhIusw?e=hd8iL0', 301)
+          return Response.redirect('https://1drv.ms/b/c/effe2f658b754cf2/EQdhdPf8KiREuBFxI3_eNDIBwpa-Ytx0z1y9zuvPuhBnTA', 301)
 
 
 
