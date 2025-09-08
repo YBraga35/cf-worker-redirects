@@ -48,7 +48,7 @@ export default {
           return Response.redirect('https://drive.google.com/file/d/19ZAGIm3BtbGL5Gcs_6qKkT7500HeCes5/view?usp=sharing', 301)
 
 
-        case '':
+        case '/':
           return Response.redirect('https://drive.google.com/drive/folders/1CXuUmmXZIyNH0gBfwv3NJtpo53Dcc3LW', 301)
       }
     }
