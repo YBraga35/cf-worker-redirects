@@ -38,25 +38,18 @@ export default {
     // Redirecionamentos de drive.yanbraga.com
     if (hostname === "drive.yanbraga.com") {
       switch (path) {
-        case '/ubg/ultimate-backstory-guide':
-          return Response.redirect('https://1drv.ms/b/c/effe2f658b754cf2/ERxfu3Go_xpIrVm3aGGLfQQBNXbZyA8YfiRj6qqUMMm9Uw?e=dJi9nm', 301)
+        case '/aol':
+          return Response.redirect('https://drive.google.com/file/d/15UziOGn6TIQ_XFbNxo5yuPg7I63iq53U/view?usp=sharing', 301)
+        
+        case '/ubg':
+          return Response.redirect('https://drive.google.com/file/d/1QnZ8RK5dA1iddipEFRn6zQBNd6BY9dZd/view?usp=sharing', 301)
 
-        case '/vss/valdas-spire-of-secrets':
-          return Response.redirect('https://1drv.ms/b/c/effe2f658b754cf2/ESvxEBqaMzVJl2Zdlrgvm7ABpeHL-1xb2rFHaN65cqEU-g?e=NldX3v', 301)
-
-        case '/tgs/the-griffons-saddlebag':
-          return Response.redirect('https://1drv.ms/b/c/effe2f658b754cf2/ETU_7fOf0C9Hi42h_KlAxqEB0B-4Gia1CEVlKNbRekrw8w?e=elPfch', 301)
-
-        case '/cc-sotdq/character-creation-sotdq':
-          return Response.redirect('https://1drv.ms/b/c/effe2f658b754cf2/EWxPsSbJkDpOme9PtPc51fcB7MvgdAGM2jwVPMG3vQpfpw?e=Jhak72', 301)
-
-        case '/cc-ootdl/character-creation-ootdl':
-          return Response.redirect('https://1drv.ms/b/c/effe2f658b754cf2/EQdhdPf8KiREuBFxI3_eNDIBwpa-Ytx0z1y9zuvPuhBnTA', 301)
-
+        case '/vss':
+          return Response.redirect('https://drive.google.com/file/d/19ZAGIm3BtbGL5Gcs_6qKkT7500HeCes5/view?usp=sharing', 301)
 
 
         case '':
-          return Response.redirect('https://1drv.ms/f/c/effe2f658b754cf2/EmMEH0DZTTpFkra34X_ND9IBUo_CWWSho8SPSNVoQmbmMQ?e=qd6YyY', 301)
+          return Response.redirect('https://drive.google.com/drive/folders/1CXuUmmXZIyNH0gBfwv3NJtpo53Dcc3LW?usp=sharing', 301)
       }
     }
 
