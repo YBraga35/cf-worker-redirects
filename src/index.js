@@ -49,7 +49,7 @@ export default {
 
 
         case '':
-          return Response.redirect('https://drive.google.com/drive/folders/1CXuUmmXZIyNH0gBfwv3NJtpo53Dcc3LW?usp=sharing', 301)
+          return Response.redirect('https://drive.google.com/drive/folders/1CXuUmmXZIyNH0gBfwv3NJtpo53Dcc3LW', 301)
       }
     }
 
